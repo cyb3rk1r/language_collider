@@ -1,0 +1,12 @@
+.container.d-flex.justify-content-center.align-items-center.vh-100
+  .row.justify-content-center
+    .col-md-6
+      - if user_signed_in?
+        %p
+          Signed in as #{current_user.email}. Not you?
+          = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-primary w-100'
+      - else
+        = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary w-100 my-2'
+        = link_to "Sign in with Discord", user_discord_omniauth_authorize_path, class: 'btn btn-primary w-100 my-2'
+        = link_to "Sign in with Telegram", user_telegram_omniauth_authorize_path, class: 'btn btn-primary w-100 my-2'
+        = link_to "Sign in with Microsoft", user_microsoft_graph_omniauth_authorize_path, class: 'btn btn-primary w-100 my-2'
